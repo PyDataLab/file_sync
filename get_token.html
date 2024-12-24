@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+   <meta charSet="utf-8" />
+   <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, shrink-to-fit=no, viewport-fit=cover'>
+   <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+   <style>
+      html,
+      body {
+         background: #eee;
+      }
+   </style>
+   <script src="https://yastatic.net/s3/passport-sdk/autofill/v1/sdk-suggest-with-polyfills-latest.js"></script>
+</head>
+
+<body>
+   <div id="container"></div> <!-- Место для кнопки -->
+   <script>
+      window.onload = function() {
+         window.YaAuthSuggest.init({
+               client_id: 'f8b83c37f3b3452081845c65110ffda5',  // Ваш client_id
+               response_type: 'token',  // Тип запроса, в данном случае токен
+               redirect_uri: 'https://oauth.yandex.ru/verification_code'  // Ваш redirect_uri
+            },
+            'https://examplesite.com', {  // Здесь укажите origin вашей страницы
+               view: 'button',  // Отображение кнопки
+               parentId: 'container',  // ID контейнера для кнопки
+               buttonView: 'main',  // Тип кнопки
+               buttonTheme: 'light',  // Тема кнопки (светлая)
+               buttonSize: 'm',  // Размер кнопки
+               buttonBorderRadius: 0  // Радиус скругления
+            })
+            .then(function(result) {
+               return result.handler();  // Обработка успешного результата
+            })
+            .then(function(data) {
+               console.log('Сообщение с токеном: ', data);
+               document.body.innerHTML += `Сообщение с токеном: ${JSON.stringify(data)}`;  // Вывод данных
+            })
+            .catch(function(error) {
+               console.log('Что-то пошло не так: ', error);
+               document.body.innerHTML += `Что-то пошло не так: ${JSON.stringify(error)}`;  // Вывод ошибки
+            });
+      };
+   </script>
+</body>
+
+</html>
