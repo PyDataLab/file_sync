@@ -13,7 +13,7 @@ class CloudStorage:
 
     def get_info(self):
         # Кодируем путь только один раз
-        encoded_folder = quote(self.cloud_folder, safe='/')  # Кодируем только необходимые символы
+        encoded_folder = quote(self.cloud_folder, safe='/')
         url = f"{self.base_url}/resources"
         headers = {"Authorization": f"OAuth {self.token}"}
         params = {"path": encoded_folder}
