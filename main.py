@@ -26,7 +26,9 @@ def main():
             if local_files and cloud_files:
                 sync(local_files, cloud_files, storage)
             else:
-                logging.error("Не удалось получить список файлов. Синхронизация пропущена.")
+                logging.error(
+                    "Не удалось получить список файлов. Синхронизация пропущена."
+                )
             time.sleep(sync_interval)
     except KeyboardInterrupt:
         logging.info("Сервис синхронизации остановлен.")
